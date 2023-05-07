@@ -29,14 +29,16 @@ import{
     TextLinkContent
 }from '../components/styles.js';
 
+import KeyboardAvoidingWrapper from '../components/KeyboardAvoidingWrapper.js';
 
 const {brand,darklight,primary} = Colors;
 
 
 
-const Login =()=>{
+const Login =({navigation})=>{
     const [hidePassword,setHidePassword]=useState(true);
     return(
+        <KeyboardAvoidingWrapper>
         <StyledContainer>
             <StatusBar style="dark" />
             <InnerContainer>
@@ -48,6 +50,7 @@ const Login =()=>{
                 initialValues={{ email:'',password:''}}
                 onSubmit={(values)=>{
                     console.log(values);
+                    navigation.navigate("Welcome");
                 }}
                 >
                     {({handleChange,handleBlur,handleSubmit,values})=> (<StyledFormArea>
@@ -78,7 +81,7 @@ const Login =()=>{
                             setHidePassword={setHidePassword}
                         />
                         <MsgBox>.....</MsgBox>
-                        <StyledButton inPress={handleSubmit}>
+                        <StyledButton onPress={handleSubmit}>
                             <ButtonText>
                                 Login
                             </ButtonText>
@@ -95,7 +98,7 @@ const Login =()=>{
                             <ExtraText>
                                 Don't have an account already?
                             </ExtraText>
-                            <TextLink>
+                            <TextLink onPress={()=> navigation.navigate("Signup")}>
                                 <TextLinkContent> Sign up</TextLinkContent>
                             </TextLink>
                         </ExtraView>
@@ -103,6 +106,7 @@ const Login =()=>{
                 </Formik>
             </InnerContainer>
         </StyledContainer>
+        </KeyboardAvoidingWrapper>
     );
 }
 
