@@ -4,7 +4,7 @@ import { StatusBar } from 'expo-status-bar';
 import {Formik,useFormikContext } from 'formik';
 
 import {Octicons,Ionicons,Fontisto} from '@expo/vector-icons';
-import { Button, View,TouchableOpacity } from 'react-native';
+import { Button, View,TouchableOpacity ,TextInput} from 'react-native';
 import DateTimePickerModal  from "react-native-modal-datetime-picker";
 
 // import DateTimePicker from '@react-native-community/datetimepicker';
@@ -31,16 +31,18 @@ import{
     TextLink,
     TextLinkContent
 }from '../components/styles.js';
+import styled from 'styled-components';
 
+import KeyboardAvoidingWrapper from '../components/KeyboardAvoidingWrapper.js';
 
 const {brand,darklight,primary} = Colors;
 
 
 
-const Signup =()=>{
+const Signup =({navigation})=>{
     const [hidePassword,setHidePassword]=useState(true);
     const [show,setShow]=useState(false);
-    const [date,setDate]=useState(new Date());
+    const [date,setDate]=useState();
 
     const onChange =(selectedDate)=>{
 
@@ -60,6 +62,7 @@ const Signup =()=>{
     };
 
     return(
+        <KeyboardAvoidingWrapper>
         <StyledContainer>
             <StatusBar style="dark" />
             <InnerContainer>
@@ -79,9 +82,10 @@ const Signup =()=>{
 
                 <Formik 
         
-                initialValues={{ name:'',email:'',birthday: date.toLocaleDateString() ,password:'',confirmpassword:''}}
+                initialValues={{ name:'',email:'',birthday: '' ,password:'',confirmpassword:''}}
                 onSubmit={(values)=>{
                     console.log(values);
+                    navigation.navigate("Welcome");
                 }}
                 >
                     {({handleChange,handleBlur,handleSubmit,values})=> (<StyledFormArea>
@@ -154,11 +158,9 @@ const Signup =()=>{
                             hidePassword={hidePassword}
                             setHidePassword={setHidePassword}
                         />
-
-                        <MsgBox>.....</MsgBox>
                         <StyledButton onPress={handleSubmit}>
                             <ButtonText>
-                                Login
+                                Sign Up
                             </ButtonText>
                         </StyledButton>
                         <Line/>
@@ -167,7 +169,7 @@ const Signup =()=>{
                             <ExtraText>
                                 Already have an account ? 
                             </ExtraText>
-                            <TextLink>
+                            <TextLink onPress={()=>navigation.navigate("Login")}>
                                 <TextLinkContent> Log in</TextLinkContent>
                             </TextLink>
                         </ExtraView>
@@ -175,6 +177,7 @@ const Signup =()=>{
                 </Formik>
             </InnerContainer>
         </StyledContainer>
+        </KeyboardAvoidingWrapper>
     );
 }
 
@@ -186,9 +189,9 @@ const MyTextInput = ({label,icon,isPassword,hidePassword,setHidePassword,isDate,
         <StyledInputLabel>{label}</StyledInputLabel>
         
         {!isDate && <StyledTextInput {...props}/>}
-        {isDate && <TouchableOpacity onPress={showDatePicker}>
+        {isDate && <TouchableOpacity  onPress={showDatePicker}>
             
-            <StyledTextInput {...props}/>
+            <StyledTextInput pointerEvents='none' {...props}/>
             </TouchableOpacity>}
 
 
