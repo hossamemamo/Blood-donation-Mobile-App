@@ -7,9 +7,10 @@ const UserSchema = new Schema(
         email:String,
         password : String,
         birthday:Date,
+        bloodType : [String],
     }
 );
 
 const user = mongoose.model('user',UserSchema)
+module.exports = user; 
 
-module.exports = user;
