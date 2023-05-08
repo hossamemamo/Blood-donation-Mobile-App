@@ -41,7 +41,7 @@ export const Avatar = styled.Image`
     height : 100px;
     margin:auto;
     border-radius:50px;
-    border-witdh:2px;
+    border-width:2px;
     border-color:${secondary};
     margin-bottom :10px;
     margin-top:10px;
@@ -151,7 +151,7 @@ export const ButtonText =styled.Text`
 export const MsgBox =styled.Text`
     text-align : center;
     font-size:13px;
-
+    color :${(props) =>props.type =='SUCCESS' ? green:red};
 `;
 
 export const Line=styled.View`

@@ -4,7 +4,7 @@ import { StatusBar } from 'expo-status-bar';
 import {Formik,useFormikContext } from 'formik';
 
 import {Octicons,Ionicons,Fontisto} from '@expo/vector-icons';
-import { Button, View,TouchableOpacity ,TextInput} from 'react-native';
+import { Button, View,TouchableOpacity ,TextInput,ActivityIndicator} from 'react-native';
 import DateTimePickerModal  from "react-native-modal-datetime-picker";
 
 // import DateTimePicker from '@react-native-community/datetimepicker';
@@ -36,6 +36,8 @@ import styled from 'styled-components';
 import KeyboardAvoidingWrapper from '../components/KeyboardAvoidingWrapper.js';
 
 const {brand,darklight,primary} = Colors;
+// api client
+import axios from 'axios';
 
 
 
@@ -43,6 +45,46 @@ const Signup =({navigation})=>{
     const [hidePassword,setHidePassword]=useState(true);
     const [show,setShow]=useState(false);
     const [date,setDate]=useState();
+
+    const [message,setMessage]=useState();
+    const [messageType,setMessageType]=useState();
+
+
+    const handleSignup  = (credentials,{setSubmitting})=>{
+        handleMessage(null);
+        const url='http://192.168.0.103:3000/user/signup';
+        axios.post(url,credentials)
+        .then((response)=>{
+            const result=response.data;
+            const {message,status,data}=result;
+
+            if(status !=='SUCCESS'){
+                handleMessage(message,status);
+            }
+            else
+            {
+                navigation.navigate('Welcome',{...data});
+            }
+            setSubmitting(false);
+        })
+        .catch((error) =>{
+            console.log(error.response);
+            setSubmitting(false);
+            handleMessage("AN error occurred. check your network and try again");
+        });
+    }
+
+    const handleMessage=(message,type='FAILED')=>{
+        setMessage(message);
+        setMessageType(type);
+    }
+
+
+
+
+
+
+
 
     const onChange =(selectedDate)=>{
 
@@ -83,12 +125,27 @@ const Signup =({navigation})=>{
                 <Formik 
         
                 initialValues={{ name:'',email:'',birthday: '' ,password:'',confirmpassword:''}}
-                onSubmit={(values)=>{
-                    console.log(values);
-                    navigation.navigate("Welcome");
+                
+                onSubmit={(values,{setSubmitting})=>{
+                    values={...values,birthday:date}
+                    if(values.email =='' || values.password == ''|| values.confirmpassword == ''|| values.name == ''){
+                        handleMessage('Please fill all the fields');
+                        setSubmitting(false);
+                    }
+                    else if(values.password!=values.confirmpassword)
+                    {
+                        handleMessage("passwords don't match!");
+                        setSubmitting(false);
+
+                    }
+                    else
+                    {
+                        handleSignup(values,{setSubmitting});
+                    }
                 }}
+
                 >
-                    {({handleChange,handleBlur,handleSubmit,values})=> (<StyledFormArea>
+                    {({handleChange,handleBlur,handleSubmit,values,isSubmitting})=> (<StyledFormArea>
                         <MyTextInput
                             label="full Name"
                             icon="person" 
@@ -158,12 +215,18 @@ const Signup =({navigation})=>{
                             hidePassword={hidePassword}
                             setHidePassword={setHidePassword}
                         />
-                        <StyledButton onPress={handleSubmit}>
+
+                        <MsgBox type={messageType}>{message}</MsgBox>
+                        {!isSubmitting && <StyledButton onPress={handleSubmit}>
                             <ButtonText>
                                 Sign Up
                             </ButtonText>
-                        </StyledButton>
-                        <Line/>
+                        </StyledButton>}
+
+
+                        {isSubmitting && <StyledButton>
+                            <ActivityIndicator size="large" color={primary}/>
+                        </StyledButton>}
 
                         <ExtraView>
                             <ExtraText>
@@ -177,7 +240,7 @@ const Signup =({navigation})=>{
                 </Formik>
             </InnerContainer>
         </StyledContainer>
-        </KeyboardAvoidingWrapper>
+       </KeyboardAvoidingWrapper>
     );
 }
 
