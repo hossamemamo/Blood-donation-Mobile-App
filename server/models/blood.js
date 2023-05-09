@@ -4,7 +4,7 @@ const Schema=mongoose.Schema;
 const BloodSchema = new Schema (
     {
         date : { type: Date, default: Date.now },
-        bloodType : [String],
+        bloodType : String,
         location : String,
         number : Number,
     }

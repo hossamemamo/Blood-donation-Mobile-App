@@ -1,67 +1,64 @@
-import { StyleSheet, Text, View, Button } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { FlatList, Text, View } from 'react-native';
 
- const Blood = () => {
-  return (
-    <View style = {styles.headcontainer}>
-    <View style = {styles.appcontainer}>
-      <Text>Emergency Feed</Text>
-    </View>
-    <View style = {styles.inputcontainer}>
-      <View style = {styles.item}>
-      <Text style = {styles.text1}> ffffffii </Text>
-      <Text style = {styles.text2}> ffffffii </Text>
-      </View>
-    </View>
-    </View>
+// api client
+import axios from 'axios';
 
+const Table = ({ data }) => {
+  const renderItem = ({ item }) => (
+    <View style={{ flexDirection: 'row', padding: 10 }}>
+      <Text style={{ flex: 1 }}>{item.date}</Text>
+      <Text style={{ flex: 1 }}>{item.bloodType}</Text>
+      <Text style={{ flex: 1 }}>{item.location}</Text>
+      <Text style={{ flex: 1 }}>{item.number}</Text>
+    </View>
   );
-}
-export default Blood;
 
-const styles = StyleSheet.create({
-  
-  headcontainer:{
-    flex:1,
-    paddingTop:65,
-    paddingHorizontal:15,
-  },
+  return (
+    <View>
+      <View style={{ flexDirection: 'row', padding: 60 }}>
+        <Text style={{ flex: 1, fontWeight: 'bold' }}>Date</Text>
+        <Text style={{ flex: 1, fontWeight: 'bold' }}>Blood Type</Text>
+        <Text style={{ flex: 1, fontWeight: 'bold' }}>Location</Text>
+        <Text style={{ flex: 1, fontWeight: 'bold' }}>Number</Text>
+      </View>
+      <FlatList
+        data={data}
+        keyExtractor={(item) => item._id}
+        renderItem={renderItem}
+      />
+    </View>
+  );
+};
 
-  appcontainer: {
-    flex:1,
-    justifycontent:'center',
-    alignItems:'center',
-    marginBottom:25,
-    borderBottomWidth:1,
-    borderBottomColor:'purple',
-  },
+const App = () => {
+  const [tableData, setTableData] = useState([]);
 
-  inputcontainer:{
-    flex:10,
-  }, 
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const url = 'http://192.168.1.2:3000/blood/bloods';
+        const response = await axios.get(url);
+        const { data, status } = response.data;
 
-   item:{
-    margin:10,
-    padding:8,
-    borderRadius:15,
-    marginEnd:1,
-   },
+        if (status === 'SUCCESS') {
+          setTableData(data);
+        } else {
+          console.log('Error:', response);
+        }
+      } catch (error) {
+        console.log('An error occurred. Check your network and try again.');
+      }
+    };
 
-   text1:{
-    color:'white',
-    backgroundColor:'green',
-    margin:10,
-    padding:15,
-    borderRadius:10,
-    marginEnd:5,
-   },
+    fetchData();
+  }, []);
 
-   text2:{
-    color:'white',
-    backgroundColor:'red',
-    margin:10,
-    padding:15,
-    borderRadius:10,
-    marginEnd:5,
-   },
+  return (
+    <View style={{ flex: 1, padding: 20 }}>
+      <Table data={tableData} />
+    </View>
+  );
+};
 
-});
+export default App;
