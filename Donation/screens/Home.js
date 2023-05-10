@@ -11,13 +11,13 @@ const donationTypes = ["Blood", "Money", "Clothes"];
 
 const Stack = createNativeStackNavigator();
 
-const Home = (navigation) => {
+const Home = ({navigation}) => {
     const [activeDonationType, setActiveDonationType] = useState("Blood")
 
     return (
         <SafeAreaView style={{ flex: 1, backgroundColor: 'white'}}>
             
-            <ScrollView showsVerticalScrollIndicator={false}>
+            {/* <ScrollView showsVerticalScrollIndicator={false}> */}
 
                 <View style={{ flex: 1, padding: 25 }}>
 
@@ -31,8 +31,9 @@ const Home = (navigation) => {
                         />
                     </TouchableOpacity>
                     </View>
+                    
 
-                        <View >
+                        <View style={{ flex: 8}}>
                             
                         <Text style={styles.userName}>
                             Hello User
@@ -42,27 +43,38 @@ const Home = (navigation) => {
                             Donate Here!
                         </Text>
 
-                            <View style={styles.tabsContainer}>
-                                <FlatList 
-                                data={donationTypes}
-                                renderItem={({ item }) => (
-                                    <TouchableOpacity style={styles.tab(activeDonationType, item)} onPress={() => {
-                                    setActiveDonationType(item);
-                                    navigation.navigate("Welcome")
-                                    }}>
-                                        <Text style={styles.tabText(activeDonationType, item)}>{item}</Text>
-                                    </TouchableOpacity>
-                                )}
-                                keyExtractor={item => item}
-                                contentContainerStyle={{ columnGap: 16}}
-                                vertical
-                                />
-                            </View>
+                        <View style={styles.tabsContainer}>
+                    <FlatList 
+                        data={donationTypes}
+                        renderItem={({ item }) => (
+                        <TouchableOpacity style={styles.tab(activeDonationType, item)} onPress={() => {
+                            setActiveDonationType(item);
+                            if(item == "Blood")
+                            {
+                                navigation.navigate("blood");
+                            }
+                            else if (item=="Money")
+                            {
+                                console.log("empty for money");
+                            }
+                            else if(item=="Clothes")
+                            {
+                                navigation.navigate("Clothes");
+                            }
+                        }}>
+                            <Text style={styles.tabText(activeDonationType, item)}>{item}</Text>
+                        </TouchableOpacity>
+                        )}
+                        keyExtractor={item => item}
+                        contentContainerStyle={{ columnGap: 16 }}
+                        vertical
+                    />
+                    </View>
 
                        
                     </View>
                 </View>
-            </ScrollView>
+            {/* </ScrollView> */}
         </SafeAreaView>
     );
 };
