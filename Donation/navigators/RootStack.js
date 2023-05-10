@@ -26,13 +26,22 @@ const RootStack = () => {
                 headerTransparent:true,
                 headerLeftContainerStyle:{
                     paddingLeft:20
-                }
+                },
             }}
             initialRouteName='Login'
             >
             <Stack.Screen name="Login" component={Login} />
             <Stack.Screen name="Signup" component={Signup} />
-            <Stack.Screen options={{headerTintColor : primary}} name="Welcome" component={Welcome} />
+
+
+            <Stack.Screen
+          options={{
+            headerTintColor: primary,
+            gestureEnabled: false, //prevents going back
+          }}
+          name="Welcome"
+          component={Welcome}
+        />
 
             </Stack.Navigator>
         </NavigationContainer>
