@@ -28,7 +28,6 @@ const Table = ({ data }) => {
         renderItem={renderItem}
       />
     </View>
-    </View>
   );
 }
 export default Blood;
