@@ -7,7 +7,7 @@ const UserSchema = new Schema(
         email:String,
         password : String,
         birthday:Date,
-        bloodType : [String],
+        // bloodType : [String],
     }
 );
 
