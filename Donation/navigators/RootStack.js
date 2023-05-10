@@ -11,6 +11,8 @@ import Welcome from './../screens/Welcome';
 import Login from './../screens/Login';
 import Signup from './../screens/Signup';
 import Home from './../screens/Home';
+import Blood from './../screens/Blood';
+import Clothes from './../screens/Clothes';
 
 const Stack=createNativeStackNavigator();
 
@@ -30,19 +32,34 @@ const RootStack = () => {
             }}
             initialRouteName='Login'
             >
-            <Stack.Screen name="Home" component={Home} />
             <Stack.Screen name="Login" component={Login} />
             <Stack.Screen name="Signup" component={Signup} />
+            <Stack.Screen name="blood" component={Blood} />
+            <Stack.Screen name="Clothes" component={Clothes} />
 
 
             <Stack.Screen
           options={{
             headerTintColor: primary,
             gestureEnabled: false, //prevents going back
-          }}
+            headerLeft: () => <></>,
+            headerShown: true,
+        }}
+          name="Home"
+          component={Home}
+        />
+
+        <Stack.Screen
+          options={{
+            headerTintColor: primary,
+            gestureEnabled: false, //prevents going back
+            headerLeft: () => <></>,
+            headerShown: true,
+        }}
           name="Welcome"
           component={Welcome}
         />
+
 
             </Stack.Navigator>
         </NavigationContainer>

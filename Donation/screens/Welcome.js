@@ -40,9 +40,9 @@ const Welcome =({navigation,route})=>{
                     <Avatar resizeMode="cover" source={require('../assets/imgs/logo.jpg')}/>
 
                     <Line/>
-                            <StyledButton onPress={()=>{navigation.navigate("Login")}}>
+                            <StyledButton onPress={()=>{navigation.navigate("Home")}}>
                             <ButtonText>
-                                Log out
+                                continue
                             </ButtonText>
                         </StyledButton>
                         </StyledFormArea>

@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
 
   userName: {
     textAlign: 'center',
-    fontFamily: FONT.regular,
+    // fontFamily: FONT.regular,
     fontSize: 24,
     fontWeight: 'bold',
     color: COLORS.secondary,
@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
 
   normal: {
     textAlign: 'left',
-    fontFamily: FONT.regular,
+    // fontFamily: FONT.regular,
     fontSize: 20,
     fontWeight: 'bold',
     color: 'black',
@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
 
   normal2: {
     textAlign: 'left',
-    fontFamily: FONT.regular,
+    // fontFamily: FONT.regular,
     fontSize: 15,
     fontWeight: 'bold',
     color: 'black',
@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
   welcomeMessage: {
     justifyContent: "center",
     alignItems: "center",
-    fontFamily: FONT.bold,
+    // fontFamily: FONT.bold,
     fontSize: SIZES.xLarge,
     color: COLORS.primary,
     marginTop: 20,
@@ -113,7 +113,7 @@ const styles = StyleSheet.create({
     height: "100%",
   },
   searchInput: {
-    fontFamily: FONT.regular,
+    // fontFamily: FONT.regular,
     width: "100%",
     height: "100%",
     paddingHorizontal: SIZES.medium,
@@ -146,7 +146,7 @@ const styles = StyleSheet.create({
     borderColor: activeDonationType === item ? 'green' : 'black',
   }),
   tabText: (activeDonationType, item) => ({
-    fontFamily: FONT.large,
+    // fontFamily: FONT.large,
     justifyContent: "center",
     alignItems: "center",
     position: 'relative',
