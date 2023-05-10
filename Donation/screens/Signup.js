@@ -1,14 +1,13 @@
-import React,{useState} from 'react';
+import React,{useState,useEffect} from 'react';
 import { StatusBar } from 'expo-status-bar';
 //formik
 import {Formik,useFormikContext } from 'formik';
 
 import {Octicons,Ionicons,Fontisto} from '@expo/vector-icons';
-import { Button, View,TouchableOpacity ,TextInput,ActivityIndicator} from 'react-native';
+import { Button, View,TouchableOpacity ,TextInput,ActivityIndicator,Text,LogBox} from 'react-native';
 import DateTimePickerModal  from "react-native-modal-datetime-picker";
-
 // import DateTimePicker from '@react-native-community/datetimepicker';
-
+import {Dropdown} from 'react-native-material-dropdown';
 
 import{
     StyledContainer,
@@ -31,7 +30,7 @@ import{
     TextLink,
     TextLinkContent
 }from '../components/styles.js';
-import styled from 'styled-components';
+
 
 import KeyboardAvoidingWrapper from '../components/KeyboardAvoidingWrapper.js';
 
@@ -42,12 +41,17 @@ import axios from 'axios';
 
 
 const Signup =({navigation})=>{
+    useEffect(() => {
+        LogBox.ignoreLogs(['Animated: `useNativeDriver`']);
+    }, [])
+    
     const [hidePassword,setHidePassword]=useState(true);
     const [show,setShow]=useState(false);
     const [date,setDate]=useState();
 
     const [message,setMessage]=useState();
     const [messageType,setMessageType]=useState();
+    const [SelectedBloodType, setSelectedBloodType] = useState("");
 
 
     const handleSignup  = (credentials,{setSubmitting})=>{
@@ -103,6 +107,55 @@ const Signup =({navigation})=>{
         setShow(false);
     };
 
+
+
+    const handleBloodChange = (itemValue) => {
+        setSelectedBloodType(itemValue);
+      };
+
+    const DropdownSelect = () => {
+        let data = [{
+            value: 'A+',
+          }, {
+            value: 'A-',
+          }, {
+            value: 'B+',
+          }
+          , {
+            value: 'B-',
+          }
+          , {
+            value: 'AB+',
+          }
+          , {
+            value: 'AB-',
+          }
+          , {
+            value: 'O+',
+          }
+          , {
+            value: 'O-',
+          }
+        
+        ];
+      
+        return (
+          <View>
+            <Dropdown 
+            
+                     label='Choose your blood type'
+                     data={data}
+                     onChangeText={handleBloodChange}
+                    value={SelectedBloodType}
+            />
+            {/* <Text>Selected Value: {SelectedBloodType}</Text> */}
+          </View>
+
+        );
+
+      };
+      
+
     return(
         <KeyboardAvoidingWrapper>
         <StyledContainer>
@@ -124,10 +177,11 @@ const Signup =({navigation})=>{
 
                 <Formik 
         
-                initialValues={{ name:'',email:'',birthday: '' ,password:'',confirmpassword:''}}
+                initialValues={{ name:'',email:'',birthday: '' ,bloodType:'',password:'',confirmpassword:''}}
                 
                 onSubmit={(values,{setSubmitting})=>{
                     values={...values,birthday:date}
+                    values={...values,bloodType:SelectedBloodType}
                     if(values.email =='' || values.password == ''|| values.confirmpassword == ''|| values.name == ''){
                         handleMessage('Please fill all the fields');
                         setSubmitting(false);
@@ -215,6 +269,11 @@ const Signup =({navigation})=>{
                             hidePassword={hidePassword}
                             setHidePassword={setHidePassword}
                         />
+
+                            <DropdownSelect  style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }} />
+
+
+
 
                         <MsgBox type={messageType}>{message}</MsgBox>
                         {!isSubmitting && <StyledButton onPress={handleSubmit}>

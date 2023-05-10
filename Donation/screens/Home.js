@@ -1,81 +1,25 @@
-import React,{useState} from 'react';
-import { StatusBar } from 'expo-status-bar';
-import { Button, FlatList, Text, View, StyleSheet, ScrollView, SafeAreaView, TouchableOpacity, Image, ImageBackground } from 'react-native';
-import styles from '../components/styles2.js';
-import { icons, SIZES, images } from '../constants';
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import React from 'react';
+import { View, Text, StyleSheet } from 'react-native';
 
-
-const donationTypes = ["Blood", "Money", "Clothes"];
-
-const Stack = createNativeStackNavigator();
-
-const Home = ({navigation}) => {
-    const [activeDonationType, setActiveDonationType] = useState("Blood")
-
+const HomeScreen = () => {
     return (
-        <SafeAreaView style={{ flex: 1, backgroundColor: 'white'}}>
-            
-            {/* <ScrollView showsVerticalScrollIndicator={false}> */}
-
-                <View style={{ flex: 1, padding: 25 }}>
-
-
-                    <View style={{ flex: 1, backgroundColor: 'white'}}>
-                    <TouchableOpacity style={styles.btnContainer}>
-                        <Image
-                            source= {images.profile}
-                            resizeMode="cover"
-                            style={styles.btnImg(40)}
-                        />
-                    </TouchableOpacity>
-                    </View>
-                    
-
-                        <View style={{ flex: 8}}>
-                            
-                        <Text style={styles.userName}>
-                            Hello User
-                        </Text>
-
-                        <Text style={styles.welcomeMessage}>
-                            Donate Here!
-                        </Text>
-
-                        <View style={styles.tabsContainer}>
-                    <FlatList 
-                        data={donationTypes}
-                        renderItem={({ item }) => (
-                        <TouchableOpacity style={styles.tab(activeDonationType, item)} onPress={() => {
-                            setActiveDonationType(item);
-                            if(item == "Blood")
-                            {
-                                navigation.navigate("blood");
-                            }
-                            else if (item=="Money")
-                            {
-                                console.log("empty for money");
-                            }
-                            else if(item=="Clothes")
-                            {
-                                navigation.navigate("Clothes");
-                            }
-                        }}>
-                            <Text style={styles.tabText(activeDonationType, item)}>{item}</Text>
-                        </TouchableOpacity>
-                        )}
-                        keyExtractor={item => item}
-                        contentContainerStyle={{ columnGap: 16 }}
-                        vertical
-                    />
-                    </View>
-
-                       
-                    </View>
-                </View>
-            {/* </ScrollView> */}
-        </SafeAreaView>
+      <View style={styles.container}>
+        <Text style={styles.text}>Welcome to the Home Screen!</Text>
+      </View>
     );
-};
-export default Home;
+  };
+  
+  const styles = StyleSheet.create({
+    container: {
+      backgroundColor: 'green', // Add the background color here
+      flex: 1,
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
+    text: {
+      fontSize: 24,
+      fontWeight: 'bold',
+    },
+  });
+  
+  export default HomeScreen;

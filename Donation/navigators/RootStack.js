@@ -14,6 +14,7 @@ import Home from './../screens/Home';
 import Blood from './../screens/Blood';
 import Clothes from './../screens/Clothes';
 
+import app from '../screens/app';
 const Stack=createNativeStackNavigator();
 
 const RootStack = () => {
@@ -36,6 +37,15 @@ const RootStack = () => {
             <Stack.Screen name="Signup" component={Signup} />
             <Stack.Screen name="blood" component={Blood} />
             <Stack.Screen name="Clothes" component={Clothes} />
+
+            <Stack.Screen 
+            options={{
+            headerTintColor: primary,
+            gestureEnabled: false, //prevents going back
+            headerLeft: () => <></>,
+            headerShown: true,
+        }}
+ name="app" component={app} />
 
 
             <Stack.Screen

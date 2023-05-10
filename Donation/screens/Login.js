@@ -140,13 +140,13 @@ const handleLogin  = (credentials,{setSubmitting})=>{
                         </StyledButton>}
 
                         
-                        <Line/>
+                        {/* <Line/>
                         <StyledButton google={true} onPress={handleSubmit}>
                             <Fontisto name="google" color={primary} size={25}/>
                             <ButtonText google={true}>
                                 Sign in with Google
                             </ButtonText>
-                        </StyledButton>
+                        </StyledButton> */}
 
                         <ExtraView>
                             <ExtraText>

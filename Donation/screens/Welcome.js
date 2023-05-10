@@ -25,7 +25,6 @@ const {brand,darklight,primary} = Colors;
 const Welcome =({navigation,route})=>{
     const [hidePassword,setHidePassword]=useState(true);
     const {name,email}=route.params;
-    
     return(
         <StyledContainer>
             <StatusBar style="dark" />
@@ -40,7 +39,7 @@ const Welcome =({navigation,route})=>{
                     <Avatar resizeMode="cover" source={require('../assets/imgs/logo.jpg')}/>
 
                     <Line/>
-                            <StyledButton onPress={()=>{navigation.navigate("Home")}}>
+                            <StyledButton onPress={()=>{navigation.navigate("app"),{...route.params}}}>
                             <ButtonText>
                                 continue
                             </ButtonText>
