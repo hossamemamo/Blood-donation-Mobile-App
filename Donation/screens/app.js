@@ -3,7 +3,7 @@ import Tabs  from "../navigators/tabs";
 
 const App = ()=>{
     return(
-            <Tabs props={{navigation,route}}></Tabs>
+            <Tabs></Tabs>
     )
 }
 export default App;
