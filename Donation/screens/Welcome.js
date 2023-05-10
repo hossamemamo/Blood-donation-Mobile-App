@@ -39,7 +39,7 @@ const Welcome =({navigation,route})=>{
                     <Avatar resizeMode="cover" source={require('../assets/imgs/logo.jpg')}/>
 
                     <Line/>
-                            <StyledButton onPress={()=>{navigation.navigate("app"),{...route.params}}}>
+                            <StyledButton onPress={()=>{navigation.navigate("app")}}>
                             <ButtonText>
                                 continue
                             </ButtonText>
