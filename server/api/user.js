@@ -8,14 +8,14 @@ const User=require('./../models/user');
 //sigup
 router.post('/signup',(req,res)=>{
     console.log(req.body);
-    let {name,email,password,birthday}=req.body;
+    let {name,email,password,birthday,bloodType}=req.body;
     name = name;
     email = email;
     password = password;
     birthday = birthday;
-    console.log(email);
+    bloodType=bloodType;
 
-    if(name == "" ||email == ""||password==""||birthday=="")
+    if(name == "" ||email == ""||password==""||birthday==""||bloodType=="")
     {
         res.json({
             status: "FAILED",
@@ -68,7 +68,8 @@ router.post('/signup',(req,res)=>{
                         name,
                         email,
                         password:hashedPassword,
-                        birthday
+                        birthday,
+                        bloodType
                     });
                     newUser.save().then(result=>{
                         res.json({
