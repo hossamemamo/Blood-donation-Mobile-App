@@ -28,37 +28,55 @@ const Table = ({ data }) => {
         renderItem={renderItem}
       />
     </View>
-  );
-};
-
-const Blood = () => {
-  const [tableData, setTableData] = useState([]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const url = 'http://192.168.1.2:3000/blood/bloods';
-        const response = await axios.get(url);
-        const { data, status } = response.data;
-
-        if (status === 'SUCCESS') {
-          setTableData(data);
-        } else {
-          console.log('Error:', response);
-        }
-      } catch (error) {
-        console.log('An error occurred. Check your network and try again.');
-      }
-    };
-
-    fetchData();
-  }, []);
-
-  return (
-    <View style={{ flex: 1, padding: 20 }}>
-      <Table data={tableData} />
     </View>
   );
-};
-
+}
 export default Blood;
+
+const styles = StyleSheet.create({
+  
+  headcontainer:{
+    flex:1,
+    paddingTop:65,
+    paddingHorizontal:15,
+  },
+
+  appcontainer: {
+    flex:1,
+    justifycontent:'center',
+    alignItems:'center',
+    marginBottom:25,
+    borderBottomWidth:1,
+    borderBottomColor:'purple',
+  },
+
+  inputcontainer:{
+    flex:10,
+  }, 
+
+   item:{
+    margin:10,
+    padding:8,
+    borderRadius:15,
+    marginEnd:1,
+   },
+
+   text1:{
+    color:'white',
+    backgroundColor:'green',
+    margin:10,
+    padding:15,
+    borderRadius:10,
+    marginEnd:5,
+   },
+
+   text2:{
+    color:'white',
+    backgroundColor:'red',
+    margin:10,
+    padding:15,
+    borderRadius:10,
+    marginEnd:5,
+   },
+
+});

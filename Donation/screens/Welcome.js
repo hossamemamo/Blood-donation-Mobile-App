@@ -25,15 +25,16 @@ const {brand,darklight,primary} = Colors;
 const Welcome =({navigation,route})=>{
     const [hidePassword,setHidePassword]=useState(true);
     const {name,email}=route.params;
+    
     return(
         <StyledContainer>
             <StatusBar style="dark" />
             <InnerContainer>
                 <WelcomeContainer>
                     <WelcomeImage resizeMode="cover" source={require('../assets/imgs/cover.jpg')}/>
-                    <PageTitle Welcome={true}>welcome man</PageTitle>
-                    <SubTitle Welcome={true}>{name||"hossam"}</SubTitle>
-                    <SubTitle Welcome={true}>{email||"hossamemamhosk@gmail.com"}</SubTitle>
+                    <PageTitle Welcome={true}>welcome Back!</PageTitle>
+                    <SubTitle Welcome={true}>{name||"user"}</SubTitle>
+                    {/* <SubTitle Welcome={true}>{email||"hossamemamhosk@gmail.com"}</SubTitle> */}
 
                 <StyledFormArea>  
                     <Avatar resizeMode="cover" source={require('../assets/imgs/logo.jpg')}/>
