@@ -24,6 +24,15 @@ export const StyledContainer=styled.View`
     padding-top:${StatusBarHeight +30}px;
 
 `;
+
+// export const StyledContainerInfo=styled.View`
+//     flex : 1;
+//     padding: 25px;
+//     background-color : ${primary};
+//     padding-top:${StatusBarHeight +30}px;
+
+// `;
+
 export const InnerContainer = styled.View`
     flex:1;
     width:100%;

@@ -177,4 +177,37 @@ router.post('/signin',(req,res)=>{
 
 })
 
+router.post('/info',(req,res)=>{
+    let {email}=req.body;
+    email = email;
+        User.find({email})
+        .then((data)=>{
+            if(data.length){
+                        res.json({
+                            status:"SUCCESS",
+                            message:"User retrived",
+                            data: data
+                        })
+            }else{
+                res.json({
+                    status:"FAILED",
+                    message:"User doesn't exist",
+                })
+
+
+            }
+        })
+        .catch(err=>{
+            res.json({
+                status:"FAILED",
+                message:"An error occurred while checking for user"
+            })
+
+        })
+    }
+
+)
+
+
+
 module.exports =router;

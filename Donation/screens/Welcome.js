@@ -33,7 +33,6 @@ const Welcome =({navigation,route})=>{
                     <WelcomeImage resizeMode="cover" source={require('../assets/imgs/cover.jpg')}/>
                     <PageTitle Welcome={true}>welcome Back!</PageTitle>
                     <SubTitle Welcome={true}>{name||"user"}</SubTitle>
-                    {/* <SubTitle Welcome={true}>{email||"hossamemamhosk@gmail.com"}</SubTitle> */}
 
                 <StyledFormArea>  
                     <Avatar resizeMode="cover" source={require('../assets/imgs/logo.jpg')}/>
