@@ -1,6 +1,7 @@
-import React,{useState} from 'react';
+import React, { useEffect, useState } from 'react';
+import { View, Text } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { StatusBar } from 'expo-status-bar';
-
 
 import{
     StyledContainer,
@@ -8,48 +9,87 @@ import{
     PageTitle,
     SubTitle,
     StyledFormArea,
-    StyledButton,
-    ButtonText,
     Colors,
     Line,
-    WelcomeContainer,
-    WelcomeImage,
     Avatar
 }from '../components/styles.js';
 
-
-const {brand,darklight,primary} = Colors;
-
-
+import axios from 'axios';
 
 const Account =()=>{
-    const [hidePassword,setHidePassword]=useState(true);
+    const [email, setEmail] = useState('');
+    const [name,setName] =useState('');
+    const [birthday,setBirthday] =useState('');
+    const [bloodType,setbloodType] =useState('');
+
+    useEffect(() => {
+      const getEmail = async () => {
+        try {
+          const storedEmail = await AsyncStorage.getItem('email');
+          setEmail(storedEmail);
+          const emailObject = {
+            email: storedEmail
+          };
+
+
+          const url ='http://192.168.1.2:3000/user/info';
+          axios.post(url,emailObject)
+          .then((response) => {
+            const result=response.data;
+            const {message,status,data}=result;
+            if(status=="SUCCESS")
+            {
+              setName(data[0].name);
+              setbloodType(data[0].bloodType);
+
+
+              const date = new Date(data[0].birthday);
+              const year = date.getFullYear();
+              const month = String(date.getMonth() + 1).padStart(2, '0');
+              const day = String(date.getDate()).padStart(2, '0');
+              const formattedDate = `${year}-${month}-${day}`;
+              setBirthday(formattedDate);
+
+            }
+          })
+          .catch(error => {
+            console.error(error);
+          });
     
-    return(
+        
+
+        } catch (error) {
+          console.log('Error while retrieving email:', error);
+        }
+
+        
+      };
+          
+      getEmail();
+
+
+    }, []);
+  
+    return (
+
         <StyledContainer>
+            <PageTitle Welcome={true}>account Info</PageTitle>
+            <Avatar resizeMode="cover" source={require('../assets/imgs/logo.jpg')}/>
             <StatusBar style="dark" />
             <InnerContainer>
-                <WelcomeContainer>
-                    <WelcomeImage resizeMode="cover" source={require('../assets/imgs/cover.jpg')}/>
-                    <PageTitle Welcome={true}>welcome Back!</PageTitle>
-                    <SubTitle Welcome={true}>{name||"user"}</SubTitle>
-                    {/* <SubTitle Welcome={true}>{email||"hossamemamhosk@gmail.com"}</SubTitle> */}
+                    <SubTitle  Welcome={true}>E-mail:{email}</SubTitle>
+                    <SubTitle  Welcome={true}>Name:{name}</SubTitle>
+                    <SubTitle  Welcome={true}>bloodType:{bloodType}</SubTitle>
+                    <SubTitle  Welcome={true}>birthday:{birthday}</SubTitle>
 
                 <StyledFormArea>  
-                    <Avatar resizeMode="cover" source={require('../assets/imgs/logo.jpg')}/>
-
                     <Line/>
-                            <StyledButton onPress={()=>{navigation.navigate("app")}}>
-                            <ButtonText>
-                                continue
-                            </ButtonText>
-                        </StyledButton>
-                        </StyledFormArea>
-                </WelcomeContainer>
+                </StyledFormArea>
             </InnerContainer>
         </StyledContainer>
-    );
-}
+
+);
+  }
 
 
 export default Account;

@@ -6,6 +6,7 @@ import {Formik} from 'formik';
 import {Octicons,Ionicons,Fontisto} from '@expo/vector-icons';
 import { Button, View,ActivityIndicator } from 'react-native';
 
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import{
     StyledContainer,
@@ -47,15 +48,20 @@ const handleLogin  = (credentials,{setSubmitting})=>{
         handleMessage(null);
         const url='http://192.168.1.2:3000/user/signin';
         axios.post(url,credentials)
-        .then((response)=>{
+        .then(async (response)=>{
             const result=response.data;
             const {message,status,data}=result;
-
             if(status !=='SUCCESS'){
                 handleMessage(message,status);
             }
             else
             {
+                try {
+                    await AsyncStorage.setItem('email', data[0].email);
+                  } catch (error) {
+                    console.log('Error while storing email: ', error);
+                  }
+          
                 navigation.navigate('Welcome',{...data[0]});
             }
             setSubmitting(false);
