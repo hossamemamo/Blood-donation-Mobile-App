@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { FlatList, Text, View } from 'react-native';
+import { Text, View, StyleSheet, TouchableOpacity, Button, TextInput, FlatList, Alert} from 'react-native';
 
 // api client
 import axios from 'axios';
@@ -11,17 +11,21 @@ const Table = ({ data }) => {
       <Text style={{ flex: 1 }}>{item.bloodType}</Text>
       <Text style={{ flex: 1 }}>{item.location}</Text>
       <Text style={{ flex: 1 }}>{item.number}</Text>
+      <View style= {{flexDirection:'column'}}>
+      <Button 
+       onPress={() => Alert.alert('Sa3d')}
+      title="Donate"
+      color="green"
+      accessibilityLabel="Learn more about this purple button"
+      />
+      </View>
     </View>
   );
 
   return (
     <View>
-      <View style={{ flexDirection: 'row', padding: 60 }}>
-        <Text style={{ flex: 1, fontWeight: 'bold' }}>Date</Text>
-        <Text style={{ flex: 1, fontWeight: 'bold' }}>Blood Type</Text>
-        <Text style={{ flex: 1, fontWeight: 'bold' }}>Location</Text>
-        <Text style={{ flex: 1, fontWeight: 'bold' }}>Number</Text>
-      </View>
+      <Text style = {{fontWeight:'bold', textAlign:'center', borderBottomWidth:1, borderBottomColor:'purple', paddingBottom:25, marginBottom:25}} >Emergency feed</Text>
+      
       <FlatList
         data={data}
         keyExtractor={(item) => item._id}
@@ -55,7 +59,7 @@ const App = () => {
   }, []);
 
   return (
-    <View style={{ flex: 1, padding: 20 }}>
+    <View style={{ flex: 1, padding: 20, backgroundColor:'white' }}>
       <Table data={tableData} />
     </View>
   );
