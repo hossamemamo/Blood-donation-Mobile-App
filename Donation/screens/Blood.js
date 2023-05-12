@@ -10,9 +10,6 @@ import axios from 'axios';
 const Table = ({ data }) => {
   const handleRequest = async (id) => {
     let storedEmail;
-
-
-
     try {
       storedEmail = await AsyncStorage.getItem('email');
       console.log('Email:', storedEmail);
@@ -48,7 +45,7 @@ const Table = ({ data }) => {
 
 
   
-
+    Alert.alert("Your Donation is pending and will be confirmed soon")
 
   };
 

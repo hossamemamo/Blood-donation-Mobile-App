@@ -30,17 +30,17 @@ const Welcome =({navigation,route})=>{
             <StatusBar style="dark" />
             <InnerContainer>
                 <WelcomeContainer>
-                    <WelcomeImage resizeMode="cover" source={require('../assets/imgs/cover.jpg')}/>
-                    <PageTitle Welcome={true}>welcome Back!</PageTitle>
+                    <WelcomeImage resizeMode="cover" source={require('../assets/imgs/f2.jpg')}/>
+                    <PageTitle Welcome={true}>Welcome Back!</PageTitle>
                     <SubTitle Welcome={true}>{name||"user"}</SubTitle>
 
                 <StyledFormArea>  
-                    <Avatar resizeMode="cover" source={require('../assets/imgs/logo.jpg')}/>
+            
 
                     <Line/>
                             <StyledButton onPress={()=>{navigation.navigate("app")}}>
                             <ButtonText>
-                                continue
+                                Continue
                             </ButtonText>
                         </StyledButton>
                         </StyledFormArea>
