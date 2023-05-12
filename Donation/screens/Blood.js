@@ -37,6 +37,7 @@ const Table = ({ data }) => {
   );
 
   return (
+    <ScrollView>
     <View>
       <Text style = {{fontWeight:'bold', textAlign:'center', borderBottomWidth:1, borderBottomColor:'purple', paddingBottom:25, marginBottom:25}} >Emergency feed</Text>
       
@@ -46,6 +47,7 @@ const Table = ({ data }) => {
         renderItem={renderItem}
       />
     </View>
+    </ScrollView>
   );
 };
 
@@ -58,9 +60,18 @@ const App = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const url = 'http://192.168.1.5:4000/blood/bloods';
-        const response = await axios.get(url);
+
+        const storedBloodType = await AsyncStorage.getItem('bloodType');
+        const url = 'http://192.168.1.2:3000/blood/bloods';
+        const bloodObject = {
+          bloodType: storedBloodType
+        };
+        console.log(bloodObject);
+
+        const response = await axios.post(url,bloodObject);
         const { data, status } = response.data;
+
+        
 
         if (status === 'SUCCESS') {
           setTableData(data);
@@ -78,7 +89,7 @@ const App = () => {
   return (
     <View style={{ flex: 1, padding: 20, backgroundColor:'white' }}>
       <Table data={tableData} />
-    </View>
+    // </View>
   );
 };
 
