@@ -17,17 +17,13 @@ Requirements
 
 1-Functional Requirements:
 
-- A cross-platform mobile application that will serve as a connection between individuals and organizations to connect and engage in charitable activities. 
+- A cross-platform mobile application that will serve as a connection between individuals and organizations to connect and engage in Blood donation. 
 
 -The application will be available for download on both iOS and Android platforms.
 
-- The user will be able to contribute by donating blood, clothes, or money.
+- The user will be able to contribute by donating blood
 
 - The system should provide the user with the new updates of needed blood donations according to the user's registered blood type, and the location. The user can then register to donate blood and specify the suitable date.
-
-- The user could donate clothes to one of the registered organizations. The user has two options, either to choose drop off or pick up option. Drop off allows the user to specify the date and deliver the clothes items themselves to the specified organization, while the pick up option sends a delivery order to pick up according to the entered address.
-
-- The system allows the user to donate money through visa instantly, or pick up through delivery on specified date.
 
 - The system shows the user’s account information in personal account information.
 
@@ -38,9 +34,4 @@ Requirements
 - A user-friendly interface that is easy to navigate.
 
 - The system should authenticate users according to their registered data in the database.
-
-- The database is updated regularly, and is visible to users for a maximum of 30 minutes after submitting needed blood donations from registered hospitals.
-
-- The mobile application size should not exceed 150 MB.
-
 - The mobile application should only operate within Alexandria governorate as a beginning.
