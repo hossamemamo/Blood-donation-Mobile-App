@@ -33,7 +33,7 @@ const Account =({navigation})=>{
           };
 
 
-          const url ='http://192.168.1.2:4000/user/info';
+          const url ='http://192.168.1.5:4000/user/info';
           axios.post(url,emailObject)
           .then(async (response) => {
             const result=response.data;

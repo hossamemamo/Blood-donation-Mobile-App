@@ -6,7 +6,7 @@ const RequestSchema = new Schema (
         reqNum : Number,
         bloodNum : Number,
         email : String,
-        status : String,
+        state : String,
     }
 );
 
