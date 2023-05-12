@@ -3,10 +3,11 @@ const Schema=mongoose.Schema;
 
 const BloodSchema = new Schema (
     {
-        date : { type: Date, default: Date.now },
+        date : String,
         bloodType : String,
         location : String,
         number : Number,
+        id : Number,
     }
 );
 
