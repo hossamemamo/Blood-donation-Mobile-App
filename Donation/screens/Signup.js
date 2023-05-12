@@ -4,7 +4,7 @@ import { StatusBar } from 'expo-status-bar';
 import {Formik,useFormikContext } from 'formik';
 
 import {Octicons,Ionicons,Fontisto} from '@expo/vector-icons';
-import { Button, View,TouchableOpacity ,TextInput,ActivityIndicator,Text,LogBox,ScrollView} from 'react-native';
+import { Button, View,TouchableOpacity ,TextInput,ActivityIndicator,Text,LogBox} from 'react-native';
 import DateTimePickerModal  from "react-native-modal-datetime-picker";
 // import DateTimePicker from '@react-native-community/datetimepicker';
 import {Dropdown} from 'react-native-material-dropdown';
@@ -58,7 +58,7 @@ const Signup =({navigation})=>{
 
     const handleSignup  = (credentials,{setSubmitting})=>{
         handleMessage(null);
-        const url='http://192.168.1.5:4000/user/signup';
+        const url='http://192.168.1.2:3000/user/signup';
         axios.post(url,credentials)
         .then((response)=>{
             const result=response.data;

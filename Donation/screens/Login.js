@@ -46,7 +46,7 @@ const Login =({navigation})=>{
 
 const handleLogin  = (credentials,{setSubmitting})=>{
         handleMessage(null);
-        const url='http://192.168.1.5:4000/user/signin';
+        const url='http://192.168.1.2:4000/user/signin';
         axios.post(url,credentials)
         .then(async (response)=>{
             const result=response.data;

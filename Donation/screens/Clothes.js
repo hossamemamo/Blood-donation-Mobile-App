@@ -1,10 +1,20 @@
 import React,{useState} from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { TouchableHighlight, Button, FlatList, Text, View, StyleSheet, ScrollView, SafeAreaView, TouchableOpacity, Image, ImageBackground } from 'react-native';
+import { TouchableHighlight, Button, FlatList, Text, View, StyleSheet, ScrollView, SafeAreaView, TouchableOpacity, Image, ImageBackground,TextInput } from 'react-native';
 import styles from '../components/styles2.js';
 import { icons, SIZES, images } from '../constants';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
+import{
+    StyledButton,
+    Colors,
+    ButtonText,
+}from '../components/styles.js';
+const {brand,darklight,primary} = Colors;
+
+
+    
 
 const getOrganization = (item) => {
     let image;
@@ -23,8 +33,12 @@ const delivery = ["Pickup", "Dropoff"];
 
 const Stack = createNativeStackNavigator();
 
+
+
 const Clothes = (navigation) => {
-    const [activeDonationType, setActiveDonationType] = useState("Resala")
+    const [activeDonationType, setActiveDonationType] = useState("Resala");
+    const [ActiveDeliveryType, setActiveDeliveryType] = useState("delivery");
+
     return (
         <SafeAreaView style={{ flex: 1, backgroundColor: 'white'}}>
             
@@ -74,17 +88,35 @@ const Clothes = (navigation) => {
                             <FlatList 
                                 data={delivery}
                                 renderItem={({ item }) => (
-                                    <TouchableOpacity style={styles.tab(activeDonationType, item)} onPress={() => {
-                                        setActiveDonationType(item);
+                                    <TouchableOpacity style={styles.tabDelivery(ActiveDeliveryType, item)} onPress={() => {
+                                        setActiveDeliveryType(item);
                                       }}>
-                                        <Text style={styles.tabText(activeDonationType, item)}>{item}</Text>
+                                        <Text style={styles.tabText(ActiveDeliveryType, item)}>{item}</Text>
                                     </TouchableOpacity>
                                 )}
                                 keyExtractor={item => item}
                                 contentContainerStyle={{ columnGap: 16}}
                                 horizontal
                             />
-                        
+
+
+
+                            <StyledButton onPress={()=>{console.log(activeDonationType);console.log(ActiveDeliveryType)}}>
+
+
+
+
+                                <ButtonText>
+                                    continue
+                                </ButtonText>
+
+                            </StyledButton>
+
+
+
+
+
+
                     </View>
                 </View>
             </ScrollView>
