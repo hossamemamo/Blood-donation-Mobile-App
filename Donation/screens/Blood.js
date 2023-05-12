@@ -4,18 +4,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 // api client
 import axios from 'axios';
-const Request = async () => {
-  try {
-    const response = await axios.post('http://192.168.1.2:4000/request/request', {
-      email: "Joddkdk",
-      name:"odj",
-    });
-    console.log(response.data); 
-    
-  } catch (error) {
-    console.log(error);
-  }
-};
+
 
 
 const Table = ({ data }) => {
@@ -28,7 +17,7 @@ const Table = ({ data }) => {
       <Text style={{ flex: 1 }}>{item.number}</Text>
       <View style= {{flexDirection:'column'}}>
       <Button 
-       onPress={() => Request()}
+       onPress={() => Request(item.id)}
       title="Donate"
       color="green"
       accessibilityLabel="Learn more about this purple button"
@@ -50,29 +39,70 @@ const Table = ({ data }) => {
   );
 };
 
+
+
+const Request = async (id) => {
+      console.log(id);
+      const [email,setEmail]=useState('');
+        try {
+          const storedEmail = await AsyncStorage.getItem('email');        
+          setEmail(storedEmail);
+          console.log(storedEmail);
+
+        } catch (error) {
+          console.log('Error while retrieving email:', error);
+        }
+
+
+
+
+          axios.get('http://192.168.1.5:4000/request/request')
+        .then((response) => {
+          const { data, count } = response.data;
+          console.log('Requests:', data);
+          console.log('Count:', count);
+        })
+        .catch(error => {
+          console.error('Error:');
+        });
+
+
+
+
+  try {
+    const response = await axios.post('http://192.168.1.5:4000/request/request', {
+      reqNum: count+1,
+      bloodNum: id,
+      email: email,
+      state:"Pending",
+    });
+    console.log(response.data); 
+    
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 const App = () => {
-
-  
-
   const [tableData, setTableData] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const storedBloodType = await AsyncStorage.getItem('bloodType');
-        const url = 'http://192.168.1.2:4000/blood/bloods';
+        const url1 = 'http://192.168.1.5:4000/blood/bloods';
         const bloodObject = {
           bloodType: storedBloodType
         };
         console.log(bloodObject);
 
-        const response = await axios.post(url,bloodObject);
-        const { data, status } = response.data;
+        const response1 = await axios.post(url1,bloodObject);
+        const { data, status } = response1.data;
 
         if (status === 'SUCCESS') {
           setTableData(data);
         } else {
-          console.log('Error:', response);
+          console.log('Error:', response1);
         }
       } catch (error) {
         console.log('An error occurred. Check your network and try again.');
@@ -80,6 +110,7 @@ const App = () => {
     };
 
     fetchData();
+    
   }, []);
 
   return (
