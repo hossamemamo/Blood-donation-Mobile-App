@@ -25,7 +25,9 @@ Requirements
 
 - The system should provide the user with the new updates of needed blood donations according to the user's registered blood type, and the location. The user can then register to donate blood and specify the suitable date.
 
-![](You're Somebody's Type.mp4)
+
+https://github.com/SWE-SP23/term-project-g37/assets/78453559/e3bdc492-5c1b-47ed-beca-56e29e3781c6
+
 
 - The system shows the user’s account information in personal account information.
 
@@ -37,3 +39,20 @@ Requirements
 
 - The system should authenticate users according to their registered data in the database.
 - The mobile application should only operate within Alexandria governorate as a beginning.
+
+
+
+## How to run
+
+go to Donation and run this in terminal 
+
+```bash
+expo start
+```
+then use expo go to run on your phone
+
+run server with node js in server folder 
+```bash
+node server.js
+```
+Note : you need access to our MongoDB server you can find it in .env in server folder
