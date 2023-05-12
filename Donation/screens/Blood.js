@@ -94,37 +94,6 @@ const Table = ({ data }) => {
   );
 };
 
-  // Rest of your component code...
-
-// const Request = (id) => {
-
-
-
-//       // console.log(id);
-//       const [email,setEmail]=useState('');
-
-//       const getEmail = async () => {
-//         try {
-//           const storedEmail = await AsyncStorage.getItem('email');
-//           setEmail(storedEmail);
-//           console.log(storedEmail);
-//         }
-//         catch (error) {
-//           console.log('Error while retrieving email:', error);
-//         }
-//       }
-//       getEmail();
-
-
-
-
-
-
-
-
-
-// };
-
 const App = () => {
   const [tableData, setTableData] = useState([]);
 
