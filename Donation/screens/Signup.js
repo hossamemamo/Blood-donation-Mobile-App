@@ -4,10 +4,12 @@ import { StatusBar } from 'expo-status-bar';
 import {Formik,useFormikContext } from 'formik';
 
 import {Octicons,Ionicons,Fontisto} from '@expo/vector-icons';
-import { Button, View,TouchableOpacity ,TextInput,ActivityIndicator,Text,LogBox} from 'react-native';
+import { Button, View,TouchableOpacity ,TextInput,ActivityIndicator,Text,LogBox,ScrollView} from 'react-native';
 import DateTimePickerModal  from "react-native-modal-datetime-picker";
 // import DateTimePicker from '@react-native-community/datetimepicker';
 import {Dropdown} from 'react-native-material-dropdown';
+
+
 
 import{
     StyledContainer,
@@ -67,7 +69,8 @@ const Signup =({navigation})=>{
             }
             else
             {
-                navigation.navigate('Welcome',{...data});
+
+                navigation.navigate('Login');
             }
             setSubmitting(false);
         })

@@ -9,14 +9,15 @@ import{
     PageTitle,
     SubTitle,
     StyledFormArea,
-    Colors,
+    StyledButton,
+    ButtonText,
     Line,
     Avatar
 }from '../components/styles.js';
 
 import axios from 'axios';
 
-const Account =()=>{
+const Account =({navigation})=>{
     const [email, setEmail] = useState('');
     const [name,setName] =useState('');
     const [birthday,setBirthday] =useState('');
@@ -34,13 +35,20 @@ const Account =()=>{
 
           const url ='http://192.168.1.2:3000/user/info';
           axios.post(url,emailObject)
-          .then((response) => {
+          .then(async (response) => {
             const result=response.data;
             const {message,status,data}=result;
             if(status=="SUCCESS")
             {
               setName(data[0].name);
+
               setbloodType(data[0].bloodType);
+
+              try {
+                await AsyncStorage.setItem('bloodType', data[0].bloodType);
+              } catch (error) {
+                console.log('Error while storing bloodType: ', error);
+              }
 
 
               const date = new Date(data[0].birthday);
@@ -84,6 +92,12 @@ const Account =()=>{
 
                 <StyledFormArea>  
                     <Line/>
+                    <StyledButton onPress={()=>{navigation.navigate("Login")}}>
+                            <ButtonText>
+                                Logout
+                            </ButtonText>
+                        </StyledButton>
+
                 </StyledFormArea>
             </InnerContainer>
         </StyledContainer>

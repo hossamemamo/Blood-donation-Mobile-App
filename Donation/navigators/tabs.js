@@ -27,6 +27,31 @@ const Tabs = () => {
         }}
       >
   
+  <Tab.Screen name='Account' component={Account}
+                                    options={{
+                                        tabBarIcon :({focused}) => (
+                                            <View style={style.container}>
+                                                <Image
+                                                source={require('../assets/icons/Account.png')}
+                                                resizeMode='contain'
+                                                style={{
+                                                    width:35,
+                                                    height:35,
+                                                    justifyContent:'center',
+                                                    tintColor:focused?'#e32f45':'#748c94',
+                                                    flex:5,
+                                                }}
+                                                />
+                                                <Text
+                                                    style={{color :focused ? '#e32f45':'#748c94',fontSize:8,flex:1}}>
+                                                    Account
+                                                </Text>
+                                            </View>
+                                        )
+                                    }}            
+            
+            />
+
             <Tab.Screen name='Home' component={Home}
             options={{
                 tabBarIcon :({focused}) => (
@@ -98,30 +123,6 @@ const Tabs = () => {
             
             />
 
-                    <Tab.Screen name='Account' component={Account}
-                                    options={{
-                                        tabBarIcon :({focused}) => (
-                                            <View style={style.container}>
-                                                <Image
-                                                source={require('../assets/icons/Account.png')}
-                                                resizeMode='contain'
-                                                style={{
-                                                    width:35,
-                                                    height:35,
-                                                    justifyContent:'center',
-                                                    tintColor:focused?'#e32f45':'#748c94',
-                                                    flex:5,
-                                                }}
-                                                />
-                                                <Text
-                                                    style={{color :focused ? '#e32f45':'#748c94',fontSize:8,flex:1}}>
-                                                    Account
-                                                </Text>
-                                            </View>
-                                        )
-                                    }}            
-            
-            />
 
 
         </Tab.Navigator>

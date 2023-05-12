@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { FlatList, Text, View } from 'react-native';
+import { FlatList, Text, View,ScrollView } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 // api client
 import axios from 'axios';
@@ -15,6 +16,7 @@ const Table = ({ data }) => {
   );
 
   return (
+    <ScrollView>
     <View>
       <View style={{ flexDirection: 'row', padding: 60 }}>
         <Text style={{ flex: 1, fontWeight: 'bold' }}>Date</Text>
@@ -28,6 +30,7 @@ const Table = ({ data }) => {
         renderItem={renderItem}
       />
     </View>
+    </ScrollView>
   );
 };
 
@@ -37,9 +40,18 @@ const App = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
+
+        const storedBloodType = await AsyncStorage.getItem('bloodType');
         const url = 'http://192.168.1.2:3000/blood/bloods';
-        const response = await axios.get(url);
+        const bloodObject = {
+          bloodType: storedBloodType
+        };
+        console.log(bloodObject);
+
+        const response = await axios.post(url,bloodObject);
         const { data, status } = response.data;
+
+        
 
         if (status === 'SUCCESS') {
           setTableData(data);
@@ -55,9 +67,9 @@ const App = () => {
   }, []);
 
   return (
-    <View style={{ flex: 1, padding: 20 }}>
+    // <View style={{ flex: 1, padding: 20 }}>
       <Table data={tableData} />
-    </View>
+    // </View>
   );
 };
 
