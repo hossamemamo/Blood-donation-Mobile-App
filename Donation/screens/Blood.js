@@ -8,6 +8,50 @@ import axios from 'axios';
 
 
 const Table = ({ data }) => {
+  const handleRequest = async (id) => {
+    let storedEmail;
+
+
+
+    try {
+      storedEmail = await AsyncStorage.getItem('email');
+      console.log('Email:', storedEmail);
+      // Handle the request logic here
+    } catch (error) {
+      console.log('Error while retrieving email:', error);
+    }
+
+    axios.get('http://192.168.1.2:4000/request/request')
+    .then(async (response) => {
+      const { data, count } = response.data;
+      console.log('Requests:', data);
+      console.log('Count:', count);
+
+      try {
+        const response = await axios.post('http://192.168.1.2:4000/request/request', {
+          reqNum: parseInt(count, 10) + 1,
+          bloodNum: id,
+          email: storedEmail,
+          state:"Pending",
+        });
+        console.log(response.data); 
+        
+      } catch (error) {
+        console.log(error);
+      }
+  
+
+    })
+    .catch(error => {
+      console.error('Error:');
+    });
+
+
+  
+
+
+  };
+
   const renderItem = ({ item }) => (
     <View style={{ flexDirection: 'row', padding: 10 }}>
       <Text style={{ flex: 1 }}>{item.id}</Text>
@@ -15,21 +59,32 @@ const Table = ({ data }) => {
       <Text style={{ flex: 1 }}>{item.bloodType}</Text>
       <Text style={{ flex: 1 }}>{item.location}</Text>
       <Text style={{ flex: 1 }}>{item.number}</Text>
-      <View style= {{flexDirection:'column'}}>
-      <Button 
-       onPress={() => Request(item.id)}
-      title="Donate"
-      color="green"
-      accessibilityLabel="Learn more about this purple button"
-      />
+      <View style={{ flexDirection: 'column' }}>
+        <Button
+          onPress={() => handleRequest(item.id)}
+          title="Donate"
+          color="green"
+          accessibilityLabel="Learn more about this button"
+        />
       </View>
     </View>
   );
 
   return (
     <View>
-      <Text style = {{fontWeight:'bold', textAlign:'center', borderBottomWidth:1, borderBottomColor:'purple', paddingBottom:25, marginBottom:25}} >Emergency feed</Text>
-      
+      <Text
+        style={{
+          fontWeight: 'bold',
+          textAlign: 'center',
+          borderBottomWidth: 1,
+          borderBottomColor: 'purple',
+          paddingBottom: 25,
+          marginBottom: 25,
+        }}
+      >
+        Emergency feed
+      </Text>
+
       <FlatList
         data={data}
         keyExtractor={(item) => item._id}
@@ -39,49 +94,36 @@ const Table = ({ data }) => {
   );
 };
 
+  // Rest of your component code...
 
-
-const Request = async (id) => {
-      console.log(id);
-      const [email,setEmail]=useState('');
-        try {
-          const storedEmail = await AsyncStorage.getItem('email');        
-          setEmail(storedEmail);
-          console.log(storedEmail);
-
-        } catch (error) {
-          console.log('Error while retrieving email:', error);
-        }
+// const Request = (id) => {
 
 
 
+//       // console.log(id);
+//       const [email,setEmail]=useState('');
 
-          axios.get('http://192.168.1.5:4000/request/request')
-        .then((response) => {
-          const { data, count } = response.data;
-          console.log('Requests:', data);
-          console.log('Count:', count);
-        })
-        .catch(error => {
-          console.error('Error:');
-        });
+//       const getEmail = async () => {
+//         try {
+//           const storedEmail = await AsyncStorage.getItem('email');
+//           setEmail(storedEmail);
+//           console.log(storedEmail);
+//         }
+//         catch (error) {
+//           console.log('Error while retrieving email:', error);
+//         }
+//       }
+//       getEmail();
 
 
 
 
-  try {
-    const response = await axios.post('http://192.168.1.5:4000/request/request', {
-      reqNum: count+1,
-      bloodNum: id,
-      email: email,
-      state:"Pending",
-    });
-    console.log(response.data); 
-    
-  } catch (error) {
-    console.log(error);
-  }
-};
+
+
+
+
+
+// };
 
 const App = () => {
   const [tableData, setTableData] = useState([]);
@@ -90,7 +132,7 @@ const App = () => {
     const fetchData = async () => {
       try {
         const storedBloodType = await AsyncStorage.getItem('bloodType');
-        const url1 = 'http://192.168.1.5:4000/blood/bloods';
+        const url1 = 'http://192.168.1.2:4000/blood/bloods';
         const bloodObject = {
           bloodType: storedBloodType
         };
