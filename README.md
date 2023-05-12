@@ -25,6 +25,8 @@ Requirements
 
 - The system should provide the user with the new updates of needed blood donations according to the user's registered blood type, and the location. The user can then register to donate blood and specify the suitable date.
 
+![](You're Somebody's Type.mp4)
+
 - The system shows the user’s account information in personal account information.
 
 2-Non-Functional Requirements:
