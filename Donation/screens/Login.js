@@ -34,7 +34,7 @@ import KeyboardAvoidingWrapper from '../components/KeyboardAvoidingWrapper.js';
 // api client
 import axios from 'axios';
 
-const {brand,darklight,primary} = Colors;
+const {brand,darklight,primary, red} = Colors;
 
 
 
@@ -83,7 +83,7 @@ const handleLogin  = (credentials,{setSubmitting})=>{
             <StatusBar style="dark" />
             <InnerContainer>
                 <PageLogo resizeMode="cover" source={require('../assets/imgs/logo.jpg')}/>
-                <PageTitle>shokni shokran</PageTitle>
+                <PageTitle>The Donator</PageTitle>
                 <SubTitle>Account Login</SubTitle>
                 <Formik 
         
@@ -173,7 +173,7 @@ const handleLogin  = (credentials,{setSubmitting})=>{
 const MyTextInput = ({label,icon,isPassword,hidePassword,setHidePassword,...props}) => {
     return (<View>
         <LeftIcon>
-            <Octicons name={icon} size={30} color={brand}/>
+            <Octicons name={icon} size={30} color={red}/>
         </LeftIcon>
         <StyledInputLabel>{label}</StyledInputLabel>
         <StyledTextInput {...props}/>

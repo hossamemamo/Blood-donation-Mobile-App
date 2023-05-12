@@ -59,6 +59,7 @@ export const Avatar = styled.Image`
 export const WelcomeImage=styled.Image`
     height:50%;
     min-width : 100%;    
+    width : 110%;
 `;
 
 export const PageLogo = styled.Image`
@@ -70,7 +71,7 @@ export const PageTitle = styled.Text`
     font-size : 30px;
     text-align :center;
     font-weight : bold;
-    color : ${brand};
+    color : ${red};
     padding : 10px;
 
     ${(props)=>props.welcome && `
@@ -130,7 +131,7 @@ export const RightIcon = styled.TouchableOpacity`
 `;
 export const StyledButton = styled.TouchableOpacity`
     padding :15px;
-    background-color: ${brand};
+    background-color: ${red};
     justify-content:center;
     align-items : center;
     border-radius : 5px;
@@ -192,7 +193,7 @@ export const TextLink = styled.TouchableOpacity`
 `;
 
 export const TextLinkContent = styled.Text`
-    color:${brand};
+    color:${red};
     font-size : 15px;
 `;
 
