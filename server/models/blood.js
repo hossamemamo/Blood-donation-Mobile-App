@@ -7,6 +7,7 @@ const BloodSchema = new Schema (
         bloodType : String,
         location : String,
         number : Number,
+        id : Number,
     }
 );
 

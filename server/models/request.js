@@ -3,11 +3,10 @@ const Schema=mongoose.Schema;
 
 const RequestSchema = new Schema (
     {
-        email : String,
-        name : String,
         reqNum : Number,
+        bloodNum : Number,
+        email : String,
         status : String,
-        donationType : String,
     }
 );
 
