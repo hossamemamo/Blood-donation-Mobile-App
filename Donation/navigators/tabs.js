@@ -2,9 +2,10 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { StyleSheet,Text,View,Image,TouchableOpacity} from 'react-native';
 const Tab=createBottomTabNavigator();
 
-import Home from './../screens/Home';
 import Blood from './../screens/Blood';
-import Clothes from './../screens/Clothes';
+import History from './../screens/History';
+
+
 import Account from '../screens/Account';
 import styles from '../components/styles2';
 
@@ -52,29 +53,6 @@ const Tabs = () => {
             
             />
 
-            <Tab.Screen name='Home' component={Home}
-            options={{
-                tabBarIcon :({focused}) => (
-                    <View style={style.container}>
-                        <Image
-                        source={require('../assets/icons/home.png')}
-                        resizeMode='contain'
-                        style={{
-                            width:35,
-                            height:35,
-                            justifyContent:'center',
-                            tintColor:focused?'#e32f45':'#748c94',
-                            flex:5,
-                        }}
-                        />
-                        <Text
-                            style={{color :focused ? '#e32f45':'#748c94',fontSize:8,flex:1}}>
-                            Home
-                        </Text>
-                    </View>
-                )
-            }}
-            />
             <Tab.Screen name='Blood' component={Blood}
                         options={{
                             tabBarIcon :({focused}) => (
@@ -98,12 +76,12 @@ const Tabs = () => {
                             )
                         }}            
             />
-            <Tab.Screen name='Clothes' component={Clothes}
+            <Tab.Screen name='History' component={History}
                                     options={{
                                         tabBarIcon :({focused}) => (
                                             <View style={style.container}>
                                                 <Image
-                                                source={require('../assets/icons/clothes.png')}
+                                                source={require('../assets/icons/history.png')}
                                                 resizeMode='contain'
                                                 style={{
                                                     width:35,
@@ -115,7 +93,7 @@ const Tabs = () => {
                                                 />
                                                 <Text
                                                     style={{color :focused ? '#e32f45':'#748c94',fontSize:8,flex:1}}>
-                                                    Clothes
+                                                    history
                                                 </Text>
                                             </View>
                                         )

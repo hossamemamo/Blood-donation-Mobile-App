@@ -12,7 +12,7 @@ import Login from './../screens/Login';
 import Signup from './../screens/Signup';
 import Home from './../screens/Home';
 import Blood from './../screens/Blood';
-import Clothes from './../screens/Clothes';
+import History from './../screens/History';
 
 import app from '../screens/app';
 const Stack=createNativeStackNavigator();
@@ -36,7 +36,7 @@ const RootStack = () => {
             <Stack.Screen name="Login" component={Login} />
             <Stack.Screen name="Signup" component={Signup} />
             <Stack.Screen name="blood" component={Blood} />
-            <Stack.Screen name="Clothes" component={Clothes} />
+            <Stack.Screen name="History" component={History} />
 
             <Stack.Screen 
             options={{

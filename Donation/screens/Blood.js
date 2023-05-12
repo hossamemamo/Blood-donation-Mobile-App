@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Text, View, StyleSheet, TouchableOpacity, Button, TextInput, FlatList, Alert} from 'react-native';
+import { Text, View, StyleSheet, TouchableOpacity, Button, TextInput, FlatList, Alert,Image} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 // api client
@@ -49,14 +49,20 @@ const Table = ({ data }) => {
 
   };
 
+
   const renderItem = ({ item }) => (
     <View style={{ flexDirection: 'row', padding: 10 }}>
-      <Text style={{ flex: 1 }}>{item.id}</Text>
+      <Text style={{ flex: 1, fontWeight: 'bold' }}>{item.id}</Text>
       <Text style={{ flex: 1 }}>{item.date}</Text>
-      <Text style={{ flex: 1 }}>{item.bloodType}</Text>
+      <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
+        <Text style={{ fontSize: 18, marginRight: 5 }}>{item.bloodType}</Text>
+      </View>
       <Text style={{ flex: 1 }}>{item.location}</Text>
       <Text style={{ flex: 1 }}>{item.number}</Text>
       <View style={{ flexDirection: 'column' }}>
+        
+        
+        
         <Button
           onPress={() => handleRequest(item.id)}
           title="Donate"
@@ -65,8 +71,13 @@ const Table = ({ data }) => {
         />
       </View>
     </View>
-  );
 
+
+
+
+
+  );
+  
   return (
     <View>
       <Text
