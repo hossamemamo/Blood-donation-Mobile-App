@@ -145,6 +145,16 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: activeDonationType === item ? 'green' : 'black',
   }),
+  tabDelivery: (activeDeliveryType, item) => ({
+    marginLeft: 57,
+    marginTop: 20,
+    backgroundColor: getBackgroundColor(item),
+    paddingVertical: 5,
+    paddingHorizontal: 5,
+    borderRadius: SIZES.medium,
+    borderWidth: 2,
+    borderColor: activeDeliveryType === item ? 'green' : 'black',
+  }),
   tabText: (activeDonationType, item) => ({
     // fontFamily: FONT.large,
     justifyContent: "center",
