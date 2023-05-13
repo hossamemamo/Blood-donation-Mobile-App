@@ -1,15 +1,4 @@
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-24ddc0f5d75046c5622901739e7c5dd533143b0c8e959d652212380cedb1ea36.svg)](https://classroom.github.com/a/_53rbxR4)
-[![Open in Visual Studio Code](https://classroom.github.com/assets/open-in-vscode-718a45dd9cf7e7f842a935f5ebbe5719a5e09af4491e668f4dbf3b35d5cca122.svg)](https://classroom.github.com/online_ide?assignment_repo_id=11011471&assignment_repo_type=AssignmentRepo)
-
-6721 hossamemamo
-6738 Ihabsherif
-6827 seifbassiounyy
-
-
-# Meeting #1 : 
-![](Meetings/1may.png)
-
-Overview
+# Overview
 
 The proposed app aims to connect individuals who wish to donate with organizations that are in need of these resources. The purpose of this proposal is to suggest the development of a mobile application that will enable users to donate food, blood, money, and participate in charitable activities. 
 
@@ -26,7 +15,10 @@ Requirements
 - The system should provide the user with the new updates of needed blood donations according to the user's registered blood type, and the location. The user can then register to donate blood and specify the suitable date.
 
 
-https://github.com/SWE-SP23/term-project-g37/assets/78453559/e3bdc492-5c1b-47ed-beca-56e29e3781c6
+
+https://github.com/hossamemamo/Blood-donation-Mobile-App/assets/78453559/1599e797-62bb-4467-8b27-3a6ddfa3ad4a
+
+
 
 
 - The system shows the user’s account information in personal account information.
@@ -44,7 +36,10 @@ https://github.com/SWE-SP23/term-project-g37/assets/78453559/e3bdc492-5c1b-47ed-
 
 
 
-https://github.com/SWE-SP23/term-project-g37/assets/78453559/023efeab-8499-40d5-ad92-5fb746d480b0
+
+https://github.com/hossamemamo/Blood-donation-Mobile-App/assets/78453559/17c39022-7481-489e-a937-f0c5143d8be4
+
+
 
 
 
@@ -62,3 +57,10 @@ run server with node js in server folder
 node server.js
 ```
 Note : you need access to our MongoDB server you can find it in .env in server folder
+
+## Future plans for the project 
+
+- [ ] deploy project to remote server/domain
+- [ ] add achievement/streak tab to user
+- [ ] make design more interesting
+
